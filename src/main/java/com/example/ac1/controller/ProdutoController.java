@@ -23,29 +23,64 @@ public class ProdutoController {
     public ModelAndView produtoId(@PathVariable int id){
         //chama service que chama model
         Produto x = controllService.getByID(id);//implementar
-        ModelAndView mav = new ModelAndView("produto");
-        mav.addObject("Produto", x);
+        ModelAndView mav;
+        if(x == null)
+        {
+            mav = new ModelAndView("error");
+            mav.addObject("error", x);
+        }
+        else
+        {
+            mav = new ModelAndView("produto");
+            mav.addObject("Produto", x);
+        }
         return mav;
     }
     @GetMapping("/produtosEmEstoque")
     public ModelAndView produtoEmEstoque(){
         ArrayList <Produto> produtos = controllService.getProdutosEstoque();
-        ModelAndView mav = new ModelAndView("produtosGrid");
-        mav.addObject("produtos", produtos);
+        ModelAndView mav;
+        if(produtos.isEmpty())
+        {
+            mav = new ModelAndView("error");
+            mav.addObject("error", produtos);
+        }
+        else{
+            mav= new ModelAndView("produtosGrid");
+            mav.addObject("produtos", produtos);
+        }
         return mav;
     }
     @GetMapping("/produtosValorAcima/{val}")
     public ModelAndView produtosValorAcima(@PathVariable double val){
         ArrayList <Produto> produtos = controllService.getProdutosMaior(val);
-        ModelAndView mav = new ModelAndView("produtosGrid");
-        mav.addObject("produtos", produtos);
+        ModelAndView mav;
+        //mav.addObject("produtos", produtos);
+        if(produtos.isEmpty())
+        {
+            mav = new ModelAndView("error");
+            mav.addObject("error", produtos);
+        }
+        else{
+            mav= new ModelAndView("produtosGrid");
+            mav.addObject("produtos", produtos);
+        }
         return mav;
     }   
     @GetMapping("/produtosValorAbaixo/{val}")
     public ModelAndView produtosValorAbaixo(@PathVariable double val){
         ArrayList <Produto> produtos = controllService.getProdutosMenor(val);
-        ModelAndView mav = new ModelAndView("produtosGrid");
-        mav.addObject("produtos", produtos);
+        ModelAndView mav;
+        if(produtos.isEmpty())
+        {
+            mav = new ModelAndView("error");
+            mav.addObject("error", produtos);
+        }
+        else{
+            mav= new ModelAndView("produtosGrid");
+            mav.addObject("produtos", produtos);
+        }
+        //mav.addObject("produtos", produtos);
         return mav;
     }    
 }
