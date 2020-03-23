@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produto</title>
+</head>
+<body>
+    <h1>Produto Grid</h1>
+    <table>
+    <l>ID   NOME    ESTOQUE</l>
+        <tr th:each="produto: ${produtos}">
+
+            <td th:text="${produto.getCodigo()}" />
+            <td th:text="${produto.getNome()}" />
+            <td th:text="${produto?.getEstoque()}"/>
+            <td th:text ="Valor ">
+            <td th:text="${produto?.getValor()}"/>
+        </tr>
+    </table>
+</body>
+</html>

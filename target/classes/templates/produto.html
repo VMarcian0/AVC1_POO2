@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produto</title>
+</head>
+<body>
+    <h1>Produto View</h1>
+    <p>
+    <text>ID = </text> 
+    <t th:text="${Produto?.getCodigo()}"></t>
+    </p>
+    <p>
+    <text>Nome:</text>
+    <t th:text="${Produto?.getNome()}"></t>
+    </p>
+    <p>
+    <text>Quantidade em estoque: </text>
+    <t th:text="${Produto?.getEstoque()}"></t>
+    </p>
+    <p>
+    <t>Preco = </t>
+    <t th:text="${Produto?.getValor()}"> </t>
+    </p>
+</body>
+</html>
